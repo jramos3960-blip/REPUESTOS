@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repuestos Eléctricos y Mecánicos - Catálogo</title>
+    <style>
+        /* Variables de color y estilos globales */
+        :root {
+            --primary: #1e3a8a; /* Azul oscuro corporativo */
+            --secondary: #f97316; /* Naranja para resaltar */
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --success: #25d366; /* Verde WhatsApp */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Encabezado */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Buscador / Filtro rápido (Estético) */
+        .search-box {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .search-box p {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Tabla de Precios Responsiva */
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .badge-stock {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Botón Flotante de WhatsApp */
+        .btn-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+            background-color: #128c7e;
+        }
+
+        /* Icono de WhatsApp simulado con SVG */
+        .ws-icon {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        /* Adaptación para pantallas móviles */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            table, thead, tbody, th, td, tr { 
+                display: block; 
+            }
+            thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr { 
+                border: 1px solid #e5e7eb; 
+                margin-bottom: 1rem;
+                padding: 0.5rem;
+                border-radius: 6px;
+                background: white;
+            }
+            td { 
+                border: none;
+                border-bottom: 1px solid #f3f4f6; 
+                position: relative;
+                padding-left: 50%; 
+                text-align: right;
+            }
+            td:last-child { border-bottom: none; }
+            td:before { 
+                position: absolute;
+                left: 10px;
+                width: 45%; 
+                padding-right: 10px; 
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: var(--primary);
+            }
+            /* Etiquetas simuladas en móvil */
+            td:nth-of-type(1):before { content: "Código"; }
+            td:nth-of-type(2):before { content: "Repuesto"; }
+            td:nth-of-type(3):before { content: "Precio"; }
+            td:nth-of-type(4):before { content: "Disponibilidad"; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Tu Negocio de Repuestos</h1>
+        <p>Calidad, variedad y los mejores precios del mercado</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="search-box">
+            <p>🛠️ Consulta nuestra lista de precios actualizada. Si no encuentras tu pieza, ¡consúltanos!</p>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descripción del Repuesto</th>
+                        <th>Precio</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#REP-101</td>
+                        <td>Pastillas de Freno Delanteras (Universal)</td>
+                        <td class="price">$25.50</td>
+                        <td><span class="badge-stock">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td>#REP-102</td>
+                        <td>Filtro de Aceite Sintético</td>
+                        <td class="price">$12.00</td>
+                        <td><span class="badge-stock">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td>#REP-103</td>
+                        <td>Batería de Auto 12V 75Ah</td>
+                        <td class="price">$85.00</td>
+                        <td><span class="badge-stock">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td>#REP-104</td>
+                        <td>Kit de Bujías (4 unidades)</td>
+                        <td class="price">$18.90</td>
+                        <td><span class="badge-stock">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td>#REP-105</td>
+                        <td>Amortiguador Hidráulico Trasero</td>
+                        <td class="price">$42.00</td>
+                        <td><span class="badge-stock">Disponible</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- BOTÓN DE WHATSAPP FLOTANTE -->
+    <!-- REEMPLAZA EL NÚMERO 573000000000 CON TU NÚMERO (INCLUYENDO CÓDIGO DE PAÍS, SIN EL SIGNO +) -->
+    <a href="https://wa.me" class="btn-whatsapp" target="_blank">
+        <svg class="ws-icon" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.288 1.48 4.961 1.48 5.332 0 9.67-4.33 9.673-9.648 0-2.577-1.003-5.001-2.823-6.822-1.821-1.822-4.246-2.824-6.83-2.824-5.34 0-9.678 4.33-9.682 9.649-.001 1.742.469 3.442 1.358 4.934L1.447 21.05l4.3-1.129zm9.8-4.632c-.27-.135-1.59-.783-1.836-.872-.247-.09-.427-.135-.607.135-.18.27-.697.873-.855 1.052-.158.18-.315.202-.585.067-.27-.135-1.14-.42-2.172-1.34-1.03-.918-1.725-2.052-1.928-2.396-.202-.343-.022-.53.147-.697.154-.151.343-.404.515-.607.17-.203.226-.338.338-.563.113-.225.056-.422-.028-.588-.084-.166-.607-1.46-.832-2.004-.22-.527-.46-.455-.63-.464-.162-.008-.347-.01-.533-.01s-.488.07-.743.348c-.255.279-.974.953-.974 2.324s1.002 2.688 1.14 2.871c.14.183 1.972 3.01 4.777 4.223.668.288 1.189.46 1.597.59.67.213 1.28.183 1.761.11.537-.08 1.59-.648 1.815-1.274.226-.627.226-1.166.158-1.274-.067-.109-.247-.176-.518-.311z"/>
+        </svg>
+        Escríbenos por WhatsApp
+    </a>
+
+</body>
+</html>
